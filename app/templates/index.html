@@ -14,26 +14,45 @@
   </div><!--container-->
 
   <div class="container">
-    {% if equals %}
+    {% for record in data %}
+    {{record['name']}}
+  <div>
 
     <span class="label label-success">Results are good</span>
+    <br>
+</div>
+      <button id="bt" type="button" class="btn btn-default" data-trigger="hover" data-container="body"
+      data-toggle="popover" data-placement="left" data-content="{{record['name']}}">
+        Record Data
+      </button>
 
-<button id="bt" type="button" class="btn btn-default" data-trigger="hover" data-container="body"
-data-toggle="popover" data-placement="left" data-content="{% for key,value in data.iteritems() %}
-  {{key}}
-  {{value}}
 
-{% endfor %}">
-  Record Data
-</button>
+
+    {% endfor %}
+  </div>
 
 <script>
-$("#bt").popover({ trigger: "hover" });</script>
+  $("#bt").popover({ trigger: "hover" });
+</script>
+<div class="container">
 
-    {% else %}
-      <h3>Results are not good</h3>
-    {% endif %}
+<table class="table table-bordered table-hover">
+  <thead>
+        <tr>
+          <th># of test run</th>
+          <th>Result</th>
+<!--           <th>Last Name</th>
+          <th>Username</th> -->
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+        </tr>
+      </tbody>
+</table>
 
-  </div>
+</div><!--table container-->
+
+
 </body>
 </html>

@@ -6,31 +6,66 @@ from app import collection
 
 
 
-known_good= {
+known_good= [
+
+{
    "_id": 1,
     "name": "John Doe",
     "id": 2,
     "date_of_birth": "1/2/1972",
     "ins": "blue cross"
-}
+},
+{
+   "_id": 2,
+    "name": "Jane Doe",
+    "id": 2,
+    "date_of_birth": "1/2/1973",
+    "ins": "green cross"
+},
+{
+   "_id": 3,
+    "name": "Bill Doe",
+    "id": 2,
+    "date_of_birth": "1/2/1974",
+    "ins": "that other one"
+},
+{
+   "_id": 4,
+    "name": "John Doe",
+    "id": 2,
+    "date_of_birth": "1/2/1975",
+    "ins": "orange cross"
+},
 
-
+]
 
 @app.route('/')
 @app.route('/index')
 def index():
   #db insert test
   item_dict = {}
+  item_list = []
+  good_list = []
   item=collection.find()
+  print type(item)
+
   for i in item:
-    item_dict = i
-  equal = False
-  if item_dict == known_good:
-    print "equal"
-    equal = True
+    item_list.append(i)
+
+  print "len of item_list is:", len(item_list)
+  for record in known_good:
+    for i in item_list:
+      if record["_id"] == i["_id"]:
+        # ids match. now check everything else
+        if record == i:
+          print "got it"
+          good_list.append(i)
+          print record
+          print i
 
   # for key,value in item_dict.iteritems():
   #   print "key", key
   #   print "value", value
 
-  return render_template("index.html",data=item_dict,equals=equal)
+  #return "hi"
+  return render_template("index.html",data=good_list)

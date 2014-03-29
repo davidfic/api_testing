@@ -7,7 +7,7 @@ print "db_address is", db_address
 connection = MongoClient(db_address, int(db_port))
 
 db = connection["api_test"]
-collection=db['test1']
+collection=db['api_test']
  # MongoLab has user authentication
 db.authenticate(db_username, db_password)
 
