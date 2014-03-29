@@ -13,29 +13,7 @@
     </div><!--jumbotron-->
   </div><!--container-->
 
-  <div class="container">
-    {% for record in data %}
 
-      <div>
-        <span class="label label-success">Results are good</span>
-        <br>
-      </div><!--span-->
-      <button id="{{loop.index}}" type="button"
-                      class="btn btn-default"
-                      data-trigger="hover"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="left"
-                      data-content="{{record['name']}}">
-        Record Data</button>
-
-      <br>
-<script>
-  $("#{{loop.index}}").popover({ trigger: "hover" });
-</script>
-
-      {% endfor %}
-  </div><!--container-->
 
 <div class="container">
 
@@ -44,13 +22,33 @@
         <tr>
           <th># of test run</th>
           <th>Result</th>
+          <th>Data</th>
 <!--           <th>Last Name</th>
           <th>Username</th> -->
         </tr>
       </thead>
       <tbody>
+        {% for record in data %}
           <tr>
-        </tr>
+            <td>{{loop.index}}</td>
+            <td><span class="label label-success">Results are good</span></td>
+            <td>
+              <button id="{{loop.index}}" type="button"
+                              class="btn btn-default"
+                              data-trigger="hover"
+                              data-container="body"
+                              data-toggle="popover"
+                              data-placement="left"
+                              data-html="true"
+                              data-content="{{record['name']}}<br /> {{record['ins']}}">
+                Record Data</button>
+
+            </td>
+          </tr>
+          <script>
+            $("#{{loop.index}}").popover({ trigger: "hover" });
+          </script>
+        {% endfor %}
       </tbody>
 </table>
 
