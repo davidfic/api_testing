@@ -1,8 +1,10 @@
 <html>
 <head>
   <title>API Testing</title>
-  <link type="text/stylesheet" rel="stylesheet" href="{{url_for('static', filename="css/bootstrap.css")}}"
-  <script src="{{url_for('static', filename="js/jquery.js")}}"
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css')}}"/>
+  <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
 </head>
 <body>
   <div class="container">
@@ -10,5 +12,28 @@
       <h1>API TestFramework</h1>
     </div><!--jumbotron-->
   </div><!--container-->
+
+  <div class="container">
+    {% if equals %}
+
+    <span class="label label-success">Results are good</span>
+
+<button id="bt" type="button" class="btn btn-default" data-trigger="hover" data-container="body"
+data-toggle="popover" data-placement="left" data-content="{% for key,value in data.iteritems() %}
+  {{key}}
+  {{value}}
+
+{% endfor %}">
+  Record Data
+</button>
+
+<script>
+$("#bt").popover({ trigger: "hover" });</script>
+
+    {% else %}
+      <h3>Results are not good</h3>
+    {% endif %}
+
+  </div>
 </body>
 </html>
