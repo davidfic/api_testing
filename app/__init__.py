@@ -2,7 +2,6 @@ from flask import Flask
 from pymongo import MongoClient
 from config import *
 
-print "db_address is", db_address
 
 connection = MongoClient(db_address, int(db_port))
 

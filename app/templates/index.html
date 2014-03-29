@@ -15,25 +15,28 @@
 
   <div class="container">
     {% for record in data %}
-    {{record['name']}}
-  <div>
 
-    <span class="label label-success">Results are good</span>
-    <br>
-</div>
-      <button id="bt" type="button" class="btn btn-default" data-trigger="hover" data-container="body"
-      data-toggle="popover" data-placement="left" data-content="{{record['name']}}">
-        Record Data
-      </button>
+      <div>
+        <span class="label label-success">Results are good</span>
+        <br>
+      </div><!--span-->
+      <button id="{{loop.index}}" type="button"
+                      class="btn btn-default"
+                      data-trigger="hover"
+                      data-container="body"
+                      data-toggle="popover"
+                      data-placement="left"
+                      data-content="{{record['name']}}">
+        Record Data</button>
 
-
-
-    {% endfor %}
-  </div>
-
+      <br>
 <script>
-  $("#bt").popover({ trigger: "hover" });
+  $("#{{loop.index}}").popover({ trigger: "hover" });
 </script>
+
+      {% endfor %}
+  </div><!--container-->
+
 <div class="container">
 
 <table class="table table-bordered table-hover">
