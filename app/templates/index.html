@@ -31,7 +31,11 @@
         {% for record in data %}
           <tr>
             <td>{{loop.index}}</td>
+            {% if record[1] %}
             <td><span class="label label-success">Results are good</span></td>
+            {% else %}
+            <td><span class="label label-danger">Results are not good</span></td>
+            {% endif %}
             <td>
               <button id="{{loop.index}}" type="button"
                               class="btn btn-default"
@@ -40,7 +44,7 @@
                               data-toggle="popover"
                               data-placement="left"
                               data-html="true"
-                              data-content="{{record['name']}}<br /> {{record['ins']}}">
+                              data-content="{{record[0]['name']}}<br /> {{record[0]['ins']}}">
                 Record Data</button>
 
             </td>
