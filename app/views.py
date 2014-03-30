@@ -63,11 +63,4 @@ def index():
         else:
           results.append([i,False])
 
-  for item in results:
-    print item
-  # for key,value in item_dict.iteritems():
-  #   print "key", key
-  #   print "value", value
-
-  #return "hi"
   return render_template("index.html",data=results)
