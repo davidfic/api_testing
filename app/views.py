@@ -11,28 +11,24 @@ known_good= [
 {
    "_id": 1,
     "name": "John Doe",
-    "id": 2,
     "date_of_birth": "1/2/1972",
     "ins": "blue cross"
 },
 {
    "_id": 2,
     "name": "Jane Doe",
-    "id": 2,
     "date_of_birth": "1/2/1973",
     "ins": "green cross"
 },
 {
    "_id": 3,
     "name": "Bill Doed",
-    "id": 2,
     "date_of_birth": "1/2/1974",
     "ins": "that other one"
 },
 {
    "_id": 4,
     "name": "John Doe",
-    "id": 2,
     "date_of_birth": "1/2/1975",
     "ins": "orange cross"
 },

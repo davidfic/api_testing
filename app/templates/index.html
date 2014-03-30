@@ -47,7 +47,7 @@
                                 data-toggle="popover"
                                 data-placement="left"
                                 data-html="true"
-                                data-content="{{record[0]['name']}}<br /> {{record[0]['ins']}}">
+                                data-content="ID: {{record[0]['_id']}} <br> Name: {{record[0]['name']}}<br /> {{record[0]['ins']}} <br> {{record[0]['date_of_birth']}}">
                   Record Data</button>
 
               </td>
@@ -63,7 +63,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 ">
       <div id="good" style="width:160px; height:200px"></div>
     </div>
     <div class="col-md-6">
