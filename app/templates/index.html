@@ -5,6 +5,8 @@
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css')}}"/>
   <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
   <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+  <script src="{{url_for('static', filename='js/justgage.js')}}"></script>
+  <script src="{{url_for('static', filename='js/raphael.2.1.0.min.js')}}"></script>
 </head>
 <body>
   <div class="container">
@@ -13,55 +15,82 @@
   </div>
   <div class="container">
     <div class="jumbotron">
-      <h1>API TestFramework</h1>
+      <h1 class="text-center">API TestFramework</h1>
     </div><!--jumbotron-->
   </div><!--container-->
 
 
 
 <div class="container">
+  <p>Length of overall records is {{data|length}}
 
-<table class="table table-bordered table-hover">
-  <thead>
-        <tr>
-          <th># of test run</th>
-          <th>Result</th>
-          <th>Data</th>
-<!--           <th>Last Name</th>
-          <th>Username</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        {% for record in data %}
+  <p>Length of overall good records is {{good}}
+  <p>Length of overall bad records is {{bad}}
+  <table class="table table-bordered table-hover">
+    <thead>
           <tr>
-            <td>{{loop.index}}</td>
-            {% if record[1] %}
-            <td><span class="label label-success">Results are good</span></td>
-            {% else %}
-            <td><span class="label label-danger">Results are not good</span></td>
-            {% endif %}
-            <td>
-              <button id="{{loop.index}}" type="button"
-                              class="btn btn-default"
-                              data-trigger="hover"
-                              data-container="body"
-                              data-toggle="popover"
-                              data-placement="left"
-                              data-html="true"
-                              data-content="{{record[0]['name']}}<br /> {{record[0]['ins']}}">
-                Record Data</button>
-
-            </td>
+            <th># of record</th>
+            <th>Result</th>
+            <th>Data</th>
           </tr>
-          <script>
-            $("#{{loop.index}}").popover({ trigger: "hover" });
-          </script>
-        {% endfor %}
-      </tbody>
-</table>
+        </thead>
+        <tbody>
+          {% for record in data %}
+            <tr>
+              <td>{{loop.index}}</td>
+              {% if record[1] %}
+              <td><span class="label label-success">Results match</span></td>
+              {% else %}
+              <td><span class="label label-danger">Results do not match</span></td>
+              {% endif %}
+              <td>
+                <button id="{{loop.index}}" type="button"
+                                class="btn btn-default"
+                                data-trigger="hover"
+                                data-container="body"
+                                data-toggle="popover"
+                                data-placement="left"
+                                data-html="true"
+                                data-content="{{record[0]['name']}}<br /> {{record[0]['ins']}}">
+                  Record Data</button>
+
+              </td>
+            </tr>
+            <script>
+              $("#{{loop.index}}").popover({ trigger: "hover" });
+            </script>
+          {% endfor %}
+        </tbody>
+  </table>
 
 </div><!--table container-->
 
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div id="good" style="width:160px; height:200px"></div>
+    </div>
+    <div class="col-md-6">
+      <div id="bad" style="width:160px; height:200px"></div>
+    </div>
+    </div>
+  </div>
+</div><!-- justgage container -->
+<script>
+  var good = new JustGage({
+    id: "good",
+    value: {{good}},
+    min: 0,
+    max: {{data|length}},
+    title: "Number of passing results"
+  });
+  var bad = new JustGage({
+    id: "bad",
+    value: {{bad}},
+    min: 0,
+    max: {{data|length}},
+    title: "Number of failing results"
+  });
+</script>
 </body>
 </html>

@@ -46,7 +46,9 @@ def index():
   item_dict = {}
   item_list = []
   results = []
-
+  #fix this to be list comprehension later
+  good_results = 0
+  bad_results = 0
   item=collection.find()
   print type(item)
 
@@ -60,7 +62,11 @@ def index():
         # ids match. now check everything else
         if record == i:
           results.append([i,True])
+          good_results += 1
         else:
           results.append([i,False])
+          bad_results += 1
 
-  return render_template("index.html",data=results)
+
+
+  return render_template("index.html",data=results,good=good_results,bad=bad_results)
