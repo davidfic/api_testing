@@ -1,6 +1,6 @@
-api_testing
+Test API Framework
 ===========
-Practicing a Flask app that will do API testing
+Practicing a Flask app that will do API testing and show results from what is recorded in the database against data that comes in from some source.
 
 View of the basic front page
 -------
